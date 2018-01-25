@@ -105,16 +105,6 @@
             },
             "category": "Moderation ⚒"
         },
-        "calc": {
-            "usage": "<expression>",
-            "description": "Quickly evaluate a mathematical expression",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Utility 🔦"
-        },
         "cat": {
             "usage": "",
             "description": "Random picture of a cat!",
