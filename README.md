@@ -6,3 +6,8 @@ WindowsBot is an altered version of GAwesomeBot with the intention of a less clu
 
 ## Contributing
 If you'd like to contribute to WindowsBot, simply make a pull request! Any contributions are welcome!
+
+## Hosting
+Self hosting is same process as standard [GAwesomeBot](https://github.com/GilbertGobbels/GAwesomeBot/wiki/Self-Hosting)
+
+However, be sure to rename **config.example.json** to **config.json** and **auth.example.json** to **auth.json**
