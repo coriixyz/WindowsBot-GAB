@@ -1,6 +1,7 @@
 # WindowsBot
 
 *WindowsBot, a cleaner, simpler version of [GAwesomeBot](https://bot.gilbertgobbels.xyz)*
+
 WindowsBot is an altered version of GAwesomeBot with the intention of a less clunky bot that sticks to basics!
 
 ## Contributing
