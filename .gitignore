@@ -1,0 +1,7 @@
+Configuration/config.json
+Configuration/auth.json
+Extensions/
+node_modules/
+Configuration/bot-out.log
+bot-out.log
+package-lock.json

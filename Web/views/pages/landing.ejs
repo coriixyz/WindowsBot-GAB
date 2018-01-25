@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WindowsBot: A Windowsey Discord bot!</title>
+	<% include ../partials/head %>
+
+	<style type="text/css">
+	@media screen and (max-width: 420px) {
+		#WindowsBot-title {
+			font-size: 42px;
+		}
+	}
+	@media screen and (min-width: 321px) and (max-width: 768px) {
+		#WindowsBot-title {
+			font-size: 46px;
+		}
+		#WindowsBot-subtitle {
+			font-size: 30px;
+		}
+		#WindowsBot-discord {
+			height: 31px;
+		}
+	}
+	@media screen and (min-width: 769px) {
+		#WindowsBot-title {
+			font-size: 96px;
+		}
+		#WindowsBot-subtitle {
+			font-size: 40px;
+		}
+		#WindowsBot-discord {
+			height: 42px;
+		}
+	}
+	</style>
+	<script>
+	$(document).ready(function() {
+		$(".section-shortcut-link").click(function() {
+			$("html, body").animate({
+				scrollTop: $("#" + this.href.substring(this.href.lastIndexOf("#")+1)).offset().top
+			}, 172);
+		});
+	});
+	</script>
+</head>
+<body>
+	<section id="header" class="hero is-primary is-fullheight is-bold" style="background: url('/header-image');background-size: cover;">
+		<div class="hero-head">
+			<% include ../partials/header %>
+		</div>
+		<div class="hero-body">
+			<div class="container has-text-centered">
+				<img src="/static/img/icon.png" style="border-radius: 100%;width:200px;">
+				<h1 id="WindowsBot-title" class="title is-1" style="font-family: Montserrat;">
+					<span style="display: inline-block;">WindowsBot</span>
+				</h1>
+				<h2 id="WindowsBot-subtitle" class="title is-2">
+					A Windowsey <img id="WindowsBot-discord" src="/static/img/discord-logo.png" style="vertical-align: top;"> bot!
+				</h2>
+				<br>
+
+				<p class="hero-buttons">
+					<a class="button is-primary is-large" href="/add">
+						<span class="icon">
+							<i class="fa fa-plus"></i>
+						</span>
+						<span>Add to Server</span>
+					</a>
+				</p>
+				<br>
+
+				<% if(bannerMessage) { %>
+					<br><br>
+					<h3 class="title is-5"><%- bannerMessage %></h3>
+				<% } %>
+			</div>
+		</div>
+		<div class="hero-foot">
+			<nav class="nav">
+				<div class="container">
+					<div class="nav-center">
+						<a class="nav-item is-tab section-shortcut-link" href="#about">
+							About
+						</a>
+						<a class="nav-item is-tab section-shortcut-link" href="#media">
+							Media
+						</a>
+						<a class="nav-item is-tab section-shortcut-link" href="#stats">
+							Stats
+						</a>
+						<a class="nav-item is-tab section-shortcut-link" href="#features">
+							Features
+						</a>
+						<a class="nav-item is-tab section-shortcut-link" href="#customizability">
+							Customizability
+						</a>
+						<a class="nav-item is-tab section-shortcut-link" href="#servers">
+							Servers
+						</a>
+						<a class="nav-item is-tab section-shortcut-link" href="#team">
+							Team
+						</a>
+						<a class="nav-item is-tab section-shortcut-link" href="#links">
+							More
+						</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</section>
+
+	<section id="about" class="hero is-light is-medium">
+		<div class="hero-body">
+			<div class="container">
+				<nav class="columns">
+					<div class="column has-text-centered">
+						<span class="icon is-large">
+							<i class="fa fa-star"></i>
+						</span>
+						<p class="title is-4"><strong>Outstanding</strong> features</p>
+					</div>
+					<div class="column has-text-centered">
+						<span class="icon is-large">
+							<i class="fa fa-cog"></i>
+						</span>
+						<p class="title is-4">Easy <strong>configuration</strong></p>
+					</div>
+					<div class="column has-text-centered">
+						<span class="icon is-large">
+							<i class="fa fa-heart"></i>
+						</span>
+						<p class="title is-4">Based on<strong>open-source</strong>software</p>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</section>
+	
+	<section id="stats" class="hero is-small is-black is-bold">
+		<div class="hero-body">
+			<div class="container">
+				<nav class="level is-mobile">
+					<div class="level-item has-text-centered">
+						<p class="heading">Server<%= rawServerCount==1 ? "" : "s" %></p>
+						<p class="title is-2"><%= rawServerCount %></p>
+					</div>
+					<div class="level-item has-text-centered" title="<%= rawUptime %>">
+						<p class="heading">Uptime</p>
+						<p class="title is-2"><%= roundedUptime %></p>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<section id="features" class="hero is-medium is-dark is-bold">
+		<div class="hero-body">
+			<div class="container">
+				<div class="tile is-ancestor">
+					<div class="tile is-vertical is-8">
+						<div class="tile is-parent">
+							<div class="tile is-child">
+								<p class="title is-2">Increase <strong>user activity</strong> on <strong>your</strong> server</p>
+								<p class="subtitle is-4">WindowsBot provides tons of <strong>in-chat tools</strong>.</p>
+								<p>
+									Any server, big or small, can benefit from using WindowsBot. We strive to provide the most smooth and seamless experience. WindowsBot contains many features such as <strong>Anti-Spam</strong> and <strong>a strike system.</strong>
+								</p>
+							</div>
+						</div>
+						<div class="tile">
+							<div class="tile is-parent is-vertical">
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-comments"></i>
+									</span>
+									<p class="title is-4">In-chat <strong>polls</strong></p>
+								</div>
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-star"></i>
+									</span>
+									<p class="title is-4"><strong>Warnings / Strikes</strong></p>
+								</div>
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-gavel"></i>
+									</span>
+									<p class="title is-4"><strong>Kick</strong> + <strong>ban</strong></p>
+								</div>
+							</div>
+							<div class="tile is-parent is-vertical">
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-question"></i>
+									</span>
+									<p class="title is-4"><strong>Trivia</strong> game</p>
+								</div>
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-wikipedia-w"></i>
+									</span>
+									<p class="title is-4"><strong>Wikipedia</strong></p>
+								</div>
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-table"></i>
+									</span>
+									<p class="title is-4"><strong>ModLog</strong></p>
+								</div>
+							</div>
+							<div class="tile is-parent is-vertical">
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-key"></i>
+									</span>
+									<p class="title is-4"><strong>Giveaways</strong></p>
+								</div>
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-book"></i>
+									</span>
+									<p class="title is-4"><strong>Urban</strong> Dictionary</p>
+								</div>
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-check-square-o"></i>
+									</span>
+									<p class="title is-4"><strong>To-do</strong> list</p>
+								</div>
+							</div>
+							<div class="tile is-parent is-vertical">
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-trophy"></i>
+									</span>
+									<p class="title is-4">Member <strong>ranks</strong></p>
+								</div>
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-sun-o"></i>
+									</span>
+									<p class="title is-4"><strong>Weather</strong> + <strong>Time</strong></p>
+								</div>
+								<div class="tile is-child has-text-centered">
+									<span class="icon is-large">
+										<i class="fa fa-sort"></i>
+									</span>
+									<p class="title is-4"><strong>Convert</strong> units</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tile is-parent">
+						<div class="tile is-child">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="links" class="hero is-medium is-black">
+		<div class="hero-body">
+			<div class="container">
+				<div class="has-text-centered">
+					<p class="hero-buttons">
+						<a class="button is-primary is-large" href="/add" style="background-color: #009688;">
+							Convinced? Get started now
+						</a>
+					</p>
+					<p class="hero-buttons">
+						<a class="button is-dark is-medium" href="https://discord.io/NetskyCommunity" style="background-color: #7289da;">
+							Discord
+						</a>
+						<a class="button is-light is-medium" href="https://github.com/GilbertGobbels/GWindowsBot" style="background-color: #fafafa;">
+							GitHub
+						</a>
+						<a class="button is-info is-medium" href="https://twitter.com/WindowsWorldYT" style="background-color: #1da1f2;">
+							Twitter
+						</a>
+					</p>
+				</div>
+				<br>
+			</div>
+		</div>
+	</section>
+
+	<% include ../partials/footer %>
+	<% include ../partials/scroll-top-button %>
+</body>
+</html>
