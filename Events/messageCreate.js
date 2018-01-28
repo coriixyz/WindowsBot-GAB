@@ -197,20 +197,6 @@ module.exports = (bot, db, config, winston, msg) => {
 							// Message bot admins about user spamming
 							bot.messageBotAdmins(msg.channel.guild, serverDocument, `**@${bot.getName(msg.channel.guild, serverDocument, msg.member, true)}** is spamming in #${msg.channel.name} on ${msg.channel.guild.name}`);
 
-							// Deduct 25 AwesomePoints if necessary
-							if(serverDocument.config.commands.points.isEnabled) {
-								// Get user data
-								db.users.findOrCreate({_id: msg.author.id}, (err, userDocument) => {
-									if(!err && userDocument) {
-										userDocument.points -= 25;
-										userDocument.save(err => {
-											if(err) {
-												winston.error("Failed to save user data for points", {usrid: msg.author.id}, err);
-											}
-										});
-									}
-								});
-							}
 
 							// Add strike for user
 							memberDocument.strikes.push({
