@@ -18,7 +18,7 @@
 			<% } else { %>
 				<a href="/dashboard/commands/command-options?svrid=<%= serverData.id %>">Command Options</a>
 			<% } %>
-			<% if(["/dashboard/commands/command-list", "/dashboard/commands/rss-feeds", "/dashboard/commands/streamers", "/dashboard/commands/tags", "/dashboard/commands/auto-translation", "/dashboard/commands/trivia-sets"].indexOf(currentPage)>-1) { %>
+			<% if(["/dashboard/commands/command-list", "/dashboard/commands/rss-feeds", "/dashboard/commands/streamers", "/dashboard/commands/tags", "/dashboard/commands/auto-translation" { %>
 				<a class="<%= currentPage=='/dashboard/commands/command-list' ? 'is-active' : '' %>" href="<%= currentPage=='/dashboard/commands/command-list' ? '#' : ('/dashboard/commands/command-list?svrid=' + serverData.id) %>">Command List</a>
 				<ul>
 					<li>
@@ -49,14 +49,6 @@
 								<a href="/dashboard/commands/auto-translation?svrid=<%= serverData.id %>">Auto Translation</a>
 							<% } %>
 					</li>
-					<% if(configData.commands.trivia.isEnabled) { %>
-						<li>
-							<% if(currentPage=="/dashboard/commands/trivia-sets") { %>
-								<a class="is-active" href="#">Trivia Sets</a>
-							<% } else { %>
-								<a href="/dashboard/commands/trivia-sets?svrid=<%= serverData.id %>">Trivia Sets</a>
-							<% } %>
-						</li>
 					<% } %>
 				</ul>
 			<% } else { %>
