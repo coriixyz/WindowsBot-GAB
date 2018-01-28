@@ -23,12 +23,6 @@ module.exports = (bot, db, config, winston, svr, role) => {
 				updated = true;
 				serverDocument.config.moderation.new_member_roles.splice(serverDocument.config.moderation.new_member_roles.indexOf(role.id), 1);
 			}
-			for(let i=0; i<serverDocument.config.ranks_list.length; i++) {
-				if(serverDocument.config.ranks_list[i].role_id==role.id) {
-					updated = true;
-					serverDocument.config.ranks_list[i].role_id = null;
-				}
-			}
 
 			// Save changes to serverDocument if necessary
 			if(updated) {

@@ -144,11 +144,6 @@ module.exports = {
 				isEnabled: {type: Boolean, default: false},
 				channel_id: String
 			},
-			member_rank_updated_message: {
-				isEnabled: {type: Boolean, default: false},
-				channel_id: String,
-				type: {type: String, default: "message", enum: ["message", "pm"]}
-			},
 			member_removed_message: {
 				isEnabled: {type: Boolean, default: false},
 				channel_id: String,

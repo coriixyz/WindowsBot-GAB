@@ -1,6 +1,5 @@
 const default_rss_feeds = require("./../Configuration/rss_feeds.json");
 const default_tags = require("./../Configuration/tags.json");
-const default_ranks_list = require("./../Configuration/ranks.json");
 const default_status_messages = require("./../Configuration/status_messages.json");
 const default_tag_reaction_messages = require("./../Configuration/tag_reaction.json");
 

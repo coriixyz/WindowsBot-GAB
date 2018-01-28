@@ -1,5 +1,4 @@
 const commands = require("./../Configuration/commands.json");
-const computeRankScore = require("./../Modules/RankScoreCalculator.js");
 const removeMd = require("remove-markdown");
 const reload = require("require-reload")(require);
 const ModLog = require("./../Modules/ModerationLogging.js");

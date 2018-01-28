@@ -37,7 +37,6 @@ module.exports = {
 			}
 			memberDocument.voice += Math.floor((Date.now() - voiceDocument.started_timestamp)/60000);
 			voiceDocument.remove();
-			bot.checkRank(winston, svr, serverDocument, member, memberDocument);
 
 			// Save changes to serverDocument
 			serverDocument.save(err => {
