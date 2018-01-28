@@ -3,29 +3,29 @@ const moment = require("moment");
 module.exports = (bot, db, config, winston, userDocument, serverDocument, channelDocument, memberDocument, msg) => {
 	let embed_fields = [
 		{
-			name: `Guild Name`,
+			name: `Name`,
 			value: `__**${msg.channel.guild.name}**__`,
-			inline: true
+			inline: false
 		},
 		{
-			name: `🆔`,
+			name: `ID`,
 			value: `${msg.channel.guild.id}`,
-			inline: true
+			inline: false
 		},
 		{
-			name: `🗓 Created`,
+			name: `Creation Date`,
 			value: `${moment(msg.channel.guild.createdAt).fromNow()}`,
-			inline: true
+			inline: false
 		},
 		{
-			name: `👑 Owned by`,
+			name: `Server Owner`,
 			value: `<@${msg.channel.guild.ownerID}>`,
-			inline: true
+			inline: false
 		},
 		{
-			name: "👥",
+			name: "Member Count",
 			value: `${msg.channel.guild.members.size} members`,
-			inline: true
+			inline: false
 		}
 	];
 	let image_url = "";
@@ -34,28 +34,8 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 	}
 	embed_fields.push(
 		{
-			name: `🕯 Command Prefix:`,
-			value: `\`${bot.getCommandPrefix(msg.channel.guild, serverDocument)}\``,
-			inline: true
-		},
-		{
-			name: `💬`,
+			name: `Messages Today`,
 			value: `${serverDocument.messages_today} message${serverDocument.messages_today == 1 ? "" : "s"} today`,
-			inline: true
-		},
-		{
-			name: `🗄 Category:`,
-			value: `${serverDocument.config.public_data.server_listing.category}`,
-			inline: true
-		},
-		{
-			name: `🌎`,
-			value: `Click [here](${config.hosting_url}activity/servers?q=${encodeURIComponent(msg.channel.guild.name)})`,
-			inline: true
-		},
-		{
-			name: "🖼",
-			value: `Icon:`,
 			inline: true
 		}
 	);
