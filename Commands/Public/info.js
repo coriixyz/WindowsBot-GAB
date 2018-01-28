@@ -4,7 +4,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 	let embed_fields = [
 		{
 			name: `Name`,
-			value: `__**${msg.channel.guild.name}**__`,
+			value: `${msg.channel.guild.name}`,
 			inline: false
 		},
 		{
