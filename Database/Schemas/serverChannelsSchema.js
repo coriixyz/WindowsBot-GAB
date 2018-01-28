@@ -45,11 +45,5 @@ module.exports = new mongoose.Schema({
 		title: String,
 		secret: String,
 		participant_ids: [String]
-	},
-	lottery: {
-		isOngoing: {type: Boolean, default: false},
-		expiry_timestamp: Date,
-		creator_id: String,
-		participant_ids: [String]
 	}
 });

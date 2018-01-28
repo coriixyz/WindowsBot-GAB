@@ -52,11 +52,6 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 					});
 				}
 				embed_fields.push({
-					name: `🏆 Rank: `,
-					value: `${targetMemberDocument.rank || (serverDocument.configs.ranks_list[0] || {_id: "None"})._id}`,
-					inline: true
-				});
-				embed_fields.push({
 					name: `❎ Strikes: `,
 					value: `${targetMemberDocument.strikes.length} so far`,
 					inline: true

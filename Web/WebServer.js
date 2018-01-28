@@ -36,7 +36,6 @@ const removeMd = require("remove-markdown");
 const database = require("./../Database/Driver.js");
 const createMessageOfTheDay = require("./../Modules/MessageOfTheDay.js");
 const Giveaways = require("./../Modules/Giveaways.js");
-const Lotteries = require("./../Modules/Lotteries.js");
 const Polls = require("./../Modules/Polls.js");
 const Trivia = require("./../Modules/Trivia.js");
 const Updater = require("./../Modules/Updater.js")
@@ -3246,7 +3245,6 @@ module.exports = (bot, db, auth, config, winston) => {
 			const ongoingTrivia = [];
 			const ongoingPolls = [];
 			const ongoingGiveaways = [];
-			const ongoingLotteries = [];
 			serverDocument.channels.forEach(channelDocument => {
 				const ch = svr.channels.get(channelDocument._id);
 				if(ch) {
@@ -3291,15 +3289,6 @@ module.exports = (bot, db, auth, config, winston) => {
 							participants: channelDocument.giveaway.participant_ids.length
 						});
 					}
-					if(channelDocument.lottery.isOngoing) {
-						ongoingLotteries.push({
-							channel: {
-								name: ch.name,
-								id: ch.id
-							},
-							participants: channelDocument.giveaway.participant_ids.length
-						});
-					}
 				}
 			});
 			res.render("pages/admin-ongoing-activities.ejs", {
@@ -3314,7 +3303,6 @@ module.exports = (bot, db, auth, config, winston) => {
 				trivia: ongoingTrivia,
 				polls: ongoingPolls,
 				giveaways: ongoingGiveaways,
-				lotteries: ongoingLotteries,
 				commandPrefix: bot.getCommandPrefix(svr, serverDocument)
 			});
 		});
@@ -3342,9 +3330,6 @@ module.exports = (bot, db, auth, config, winston) => {
 							break;
 						case "giveaway":
 							Giveaways.end(bot, svr, serverDocument, ch, channelDocument);
-							break;
-						case "lottery":
-							Lotteries.end(db, svr, serverDocument, ch, channelDocument);
 							break;
 					}
 				}

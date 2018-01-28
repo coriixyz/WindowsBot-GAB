@@ -55,11 +55,6 @@ module.exports = (bot, config, usr, userDocument, titleName) => {
 			}
 		}
 	}
-	embed_fields.push({
-		name: "🌎 Public Link",
-		value: `Click [here](${config.hosting_url}activity/users?q=${encodeURIComponent(`${usr.username}#${usr.discriminator}`)})`,
-		inline: true
-	});
 	const embed = {
 		color: 0x9ECDF2,
 		author: {

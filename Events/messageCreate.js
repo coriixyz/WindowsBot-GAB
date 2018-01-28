@@ -312,71 +312,7 @@ module.exports = (bot, db, config, winston, msg) => {
 						});
 					}
 
-					// Vote by mention
-					if(serverDocument.config.commands.points.isEnabled && msg.channel.guild.members.size>2 && !serverDocument.config.commands.points.disabled_channel_ids.includes(msg.channel.id) && msg.content.indexOf("<@")==0 && msg.content.indexOf(">")<msg.content.indexOf(" ") && msg.content.indexOf(" ")>-1 && msg.content.indexOf(" ")<msg.content.length-1) {
-						const member = bot.memberSearch(msg.content.substring(0, msg.content.indexOf(" ")), msg.channel.guild);
-						const voteStr = msg.content.substring(msg.content.indexOf(" "));
-						if(member && [bot.user.id, msg.author.id].indexOf(member.id)==-1 && !member.user.bot) {
-							// Get target user data
-							db.users.findOrCreate({_id: member.id}, (err, targetUserDocument) => {
-								if(!err && targetUserDocument) {
-									let voteAction;
 
-									// Check for +1 triggers
-									for(let i=0; i<config.vote_triggers.length; i++) {
-										if(voteStr.indexOf(config.vote_triggers[i])==0) {
-											voteAction = "upvoted";
-
-											// Increment points
-											targetUserDocument.points++;
-											break;
-										}
-									}
-
-									// Check for gild triggers
-									if(voteStr.indexOf(" gild")==0 || voteStr.indexOf(" guild")==0) {
-										voteAction = "gilded";
-									}
-
-									// Log and save changes if necessary
-									if(voteAction) {
-										const saveTargetUserDocumentPoints = () => {
-											targetUserDocument.save(err => {
-												if(err) {
-													winston.error("Failed to save user data for points", {usrid: member.id}, err);
-												}
-											});
-											winston.info(`User '${member.user.username}' ${voteAction} by user '${msg.author.username} on server '${msg.channel.guild.name}'`, {svrid: msg.channel.guild.id, chid: msg.channel.id, usrid: msg.author.id});
-										};
-
-										if(voteAction=="gilded") {
-											// Get user data
-											db.users.findOrCreate({_id: msg.author.id}, (err, userDocument) => {
-												if(!err && userDocument) {
-													if(userDocument.points>10) {
-														userDocument.points -= 10;
-														userDocument.save(err => {
-															if(err) {
-																winston.error("Failed to save user data for points", {usrid: msg.author.id}, err);
-															}
-
-															targetUserDocument.points += 10;
-															saveTargetUserDocumentPoints();
-														});
-													} else {
-														winston.warn(`User '${msg.author.username}' does not have enough points to gild '${member.user.username}'`, {svrid: msg.channel.guild.id, chid: msg.channel.id, usrid: msg.author.id});
-														msg.channel.createMessage(`${msg.author.mention} You don't have enough AwesomePoints to gild ${member}`);
-													}
-												}
-											});
-										} else {
-											saveTargetUserDocumentPoints();
-										}
-									}
-								}
-							});
-						}
-					}
 
 					// Vote based on previous message
 					for(let i=0; i<config.vote_triggers.length; i++) {

@@ -65,16 +65,6 @@
             },
             "category": "Utility 🔦"
         },
-        "anime": {
-            "usage": "<query> [<limit>]",
-            "description": "Searches anime shows using Hummingbird",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Search & Media 🎬"
-        },
         "archive": {
             "usage": "<count>",
             "description": "Provides a JSON file with the last <i>n</i> messages in chat",
@@ -115,16 +105,6 @@
             },
             "category": "Fun 🎪"
         },
-        "catfact": {
-            "usage": "",
-            "description": "Random fact about cats",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Fun 🎪"
-        },
         "choose": {
             "usage": "<option 1>|<option 2>[|...]",
             "description": "Randomly chooses from a set of options",
@@ -135,56 +115,6 @@
             },
             "category": "Utility 🔦"
         },
-        "convert": {
-            "usage": "<number> <unit> to <unit>",
-            "description": "Converts between units of measurement and currencies",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Utility 🔦"
-        },
-        "cool": {
-            "usage": "[<\".\" or cooldown length>][|<cooldown duration>]",
-            "description": "Sets a command cooldown for the channel",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 1
-            },
-            "category": "Moderation ⚒"
-        },
-        "count": {
-            "usage": "<name>[|\".\" or \"+1\" or \"-1\"]",
-            "description": "Keeps tallies of various things",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Utility 🔦"
-        },
-        "countdown": {
-            "usage": "[<event>][|<time from now>]",
-            "description": "Set a timer for an event",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Utility 🔦"
-        },
-        "ddg": {
-            "usage": "<query>",
-            "description": "DuckDuckGo Instant Answers",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Search & Media 🎬"
-        },
         "debug": {
             "usage": "",
             "description": "Provides system architecture information",
@@ -193,7 +123,7 @@
                 "is_nsfw_filtered": false,
                 "admin_level": 0
             },
-            "category": "AwesomeBot 🤖"
+            "category": "WindowsBot 🤖"
         },
         "disable": {
             "usage": "[<command>]",
@@ -214,16 +144,6 @@
                 "admin_level": 0
             },
             "category": "Fun 🎪"
-        },
-        "e621": {
-            "usage": "<query> [<limit>]",
-            "description": "Searches by tag on e621.net",
-            "defaults": {
-                "is_enabled": false,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "NSFW 👹"
         },
         "emotes": {
             "usage": "",
@@ -253,37 +173,7 @@
                 "is_nsfw_filtered": false,
                 "admin_level": 4
             },
-            "category": "AwesomeBot 🤖"
-        },
-        "fortune": {
-            "usage": "[<category>]",
-            "description": "Tells your fortune (not really)",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Fun 🎪"
-        },
-        "games": {
-            "usage": "",
-            "description": "Command that shows the most-played games by members on the server",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Stats & Points ⭐️"
-        },
-        "gif": {
-            "usage": "<query>",
-            "description": "Gets a GIF from Giphy with the given tags",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": true,
-                "admin_level": 0
-            },
-            "category": "Search & Media 🎬"
+            "category": "WindowsBot 🤖"
         },
         "giveaway": {
             "usage": "[\"enroll\"]",
@@ -326,26 +216,6 @@
             },
             "category": "Search & Media 🎬"
         },
-        "imdb": {
-            "usage": "[<type>] <query>",
-            "description": "Provides movie and TV show data",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Search & Media 🎬"
-        },
-        "imgur": {
-            "usage": "<image URL>",
-            "description": "Uploads an image to Imgur",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Utility 🔦"
-        },
         "info": {
             "usage": "",
             "description": "Lists basic stats about this server",
@@ -366,16 +236,6 @@
             },
             "category": "AwesomeBot 🤖"
         },
-        "joke": {
-            "usage": "",
-            "description": "Tells a random joke!",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Fun 🎪"
-        },
         "kick": {
             "usage": "<user>[|<reason>]",
             "description": "Removes a member from the server",
@@ -385,46 +245,6 @@
                 "admin_level": 1
             },
             "category": "Moderation ⚒"
-        },
-        "linkme": {
-            "usage": "<query>",
-            "description": "Searches the Google Play Store for one or more apps",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Search & Media 🎬"
-        },
-        "list": {
-            "usage": "[<content> or <item no.>][|\".\" or \"done\" or <content>]",
-            "description": "In-chat to-do list",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 1
-            },
-            "category": "Utility 🔦"
-        },
-        "lottery": {
-            "usage": "\"start\" or \"enroll\" or \".\"",
-            "description": "Hourly AwesomePoints lottery",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Stats & Points ⭐️"
-        },
-        "meme": {
-            "usage": "\"search\" <query> or [<meme key>|]<top>[|<bottom>]",
-            "description": "Generates a dank new meme",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Fun 🎪"
         },
         "messages": {
             "usage": "[<user or \"me\">]",
@@ -476,16 +296,6 @@
             },
             "category": "Moderation ⚒"
         },
-        "numfact": {
-            "usage": "",
-            "description": "Random fact about a number",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Fun 🎪"
-        },
         "perms": {
             "usage": "[<user or role>][|<permission name>]",
             "description": "Modifies permissions for a role or user in a channel",
@@ -504,27 +314,7 @@
                 "is_nsfw_filtered": false,
                 "admin_level": 0
             },
-            "category": "AwesomeBot 🤖"
-        },
-        "points": {
-            "usage": "[<user> or \"me\"]",
-            "description": "Records user points and displays them for individual members",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Stats & Points ⭐️"
-        },
-        "pokedex": {
-            "usage": "<query>",
-            "description": "Searches Pokemon species database",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Search & Media 🎬"
+            "category": "WindowsBot 🤖"
         },
         "poll": {
             "usage": "[<no. of option>]",
@@ -567,16 +357,6 @@
             },
             "category": "Moderation ⚒"
         },
-        "ranks": {
-            "usage": "[<user or rank>]",
-            "description": "Lists the ranks of all members of the server",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Stats & Points ⭐️"
-        },
         "reason": {
             "usage": "<case ID> <reason>",
             "description": "Sets the reason for modlog entries",
@@ -586,26 +366,6 @@
                 "admin_level": 1
             },
             "category": "Moderation ⚒"
-        },
-        "reddit": {
-            "usage": "[<subreddit>] [<limit>]",
-            "description": "Gets the hot posts from a given subreddit",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Search & Media 🎬"
-        },
-        "remindme": {
-            "usage": "<time from now>|<reminder>",
-            "description": "",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Utility 🔦"
         },
         "roleinfo": {
             "usage": "[<role>]",
@@ -626,26 +386,6 @@
                 "admin_level": 0
             },
             "category": "Utility 🔦"
-        },
-        "room": {
-            "usage": "\"text\" or \"voice\" [<user 1>][|<user 2>][|...]",
-            "description": "Creates a temporary text or voice channel with a few members",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Utility 🔦"
-        },
-        "rss": {
-            "usage": "<feed name or URL> [<limit>]",
-            "description": "Fetches articles from an RSS feed",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Search & Media 🎬"
         },
         "rule34": {
             "usage": "<query> [<limit>]",
@@ -676,16 +416,6 @@
                 "admin_level": 1
             },
             "category": "Utility 🔦"
-        },
-        "stats": {
-            "usage": "[\"clear\"]",
-            "description": "Collect data about the most active members and most popular games and commands on the server for each week",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Stats & Points ⭐️"
         },
 		        "strike": {
             "usage": "<user>[|<reason>]",

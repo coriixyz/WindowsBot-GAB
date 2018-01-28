@@ -23,23 +23,11 @@
 					<div class="container">
 						<article class="message is-primary">
 							<div class="message-body">
-								Points work much like <strong>karma</strong> on Reddit, but can be disabled per-server and there's no downvoting. You can get AwesomePoints by being upvoted or gilded, winning the lottery, or being one of the top 5 most active members on the server each week. Learn more on <a href="/wiki?page=Commands#points">the wiki</a>.
+								Points are being phased out of WindowsBot. Please do not rely on them for member rewards.
 							</div>
 						</article>
 					</div>
 					<br>
-					<div class="container">
-						<form id="form" action="<%= currentPage %>?svrid=<%= serverData.id %>" method="post">
-							<% var commandData = configData.commands.points;commandData.name = "points";commandData.description = commandDescriptions.points;commandData.category = commandCategories.points; %>
-							<% include ../partials/admin-command-item %>
-							<% var commandData = configData.commands.lottery;commandData.name = "lottery";commandData.description = commandDescriptions.lottery;commandData.category = commandCategories.lottery; %>
-							<% include ../partials/admin-command-item %>
-							<br>
-							<% var formButtonsUnsaved = false; %>
-							<% include ../partials/form-buttons %>
-							<% include ../partials/form-buttons-bar %>
-						</form>
-					</div>
 				</div>
 			</div>
 		</div>
