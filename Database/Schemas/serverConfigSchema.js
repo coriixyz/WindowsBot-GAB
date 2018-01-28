@@ -195,11 +195,6 @@ module.exports = {
 			invite_link: String
 		}
 	},
-	ranks_list: [new mongoose.Schema({
-		_id: {type: String, required: true, maxlength: 200},
-		max_score: {type: Number, min: 1, required: true},
-		role_id: String
-	})],
 	room_data: [new mongoose.Schema({
 		_id: {type: String, required: true},
 		created_timestamp: {type: Date, default: Date.now}

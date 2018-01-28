@@ -8,36 +8,36 @@ module.exports = (bot, config, usr, userDocument, titleName) => {
 	}).length;
 	let embed_fields = [
 	{
-		name: "Name 👤",
+		name: "Username",
 		value: `${usr.username}#${usr.discriminator}`,
-		inline: true
+		inline: false
 	},
 	{
-		name: "🆔",
+		name: "User ID",
 		value: `${usr.id}`,
-		inline: true
+		inline: false
 	},
 	{
 		name: "Status",
 		value: `${firstMember.status}${firstMember.game ? (`, playing **\`${firstMember.game.name}\`**`) : ""}`,
-		inline: true
+		inline: false
 	},
 	{
 		name: "Created",
 		value: `${moment(usr.createdAt).fromNow()}`,
-		inline: true
+		inline: false
 	}];
 	embed_fields.push({
 		name: "Mutual Servers",
-		value: `❤️ ${mutualServersCount} mutual server${mutualServersCount==1 ? "" : "s"} with ${bot.user.username}`,
-		inline: true
+		value: `${mutualServersCount} mutual server${mutualServersCount==1 ? "" : "s"} with ${bot.user.username}`,
+		inline: false
 	});
 	if(!usr.bot && userDocument) {
 		if(firstMember.status!= "online" && userDocument.last_seen) {
 			embed_fields.push({
-				name: "👀 Last seen:",
+				name: "Last seen:",
 				value: `${moment(userDocument.last_seen).fromNow()}`,
-				inline: true
+				inline: false
 			});
 		}
 		if (userDocument.profile_fields) {
@@ -45,7 +45,7 @@ module.exports = (bot, config, usr, userDocument, titleName) => {
 				embed_fields.push({
 					name: `ℹ️ ${key}:`,
 					value: `${userDocument.profile_fields[key]}`,
-					inline: true
+					inline: false
 				});
 			}
 		}
@@ -55,7 +55,7 @@ module.exports = (bot, config, usr, userDocument, titleName) => {
 		author: {
 			name: bot.user.username,
 			icon_url: bot.user.avatarURL,
-			url: "https://github.com/GilbertGobbels/GAwesomeBot"
+			url: "https://github.com/Corii/WindowsBot"
 		},
 		fields: embed_fields,
 		footer: {

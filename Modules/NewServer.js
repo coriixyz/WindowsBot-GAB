@@ -18,12 +18,6 @@ module.exports = (bot, svr, serverDocument) => {
 	// Default RSS feed
 	serverDocument.config.rss_feeds = default_rss_feeds;
 
-	// Default tag list
-	serverDocument.config.tags.list = default_tags;
-
-	// Default ranks list
-	serverDocument.config.ranks_list = default_ranks_list;
-
 	// Default member messages
 	serverDocument.config.moderation.status_messages.new_member_message.messages = default_status_messages.new_member_message;
 	serverDocument.config.moderation.status_messages.member_online_message.messages = default_status_messages.member_online_message;

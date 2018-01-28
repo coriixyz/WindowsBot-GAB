@@ -100,8 +100,6 @@ module.exports = (bot, db, config, winston, msg) => {
 					memberDocument.messages++;
 					// Set now as the last active time for member
 					memberDocument.last_active = Date.now();
-					// Check if the user has leveled up a rank
-					bot.checkRank(winston, msg.channel.guild, serverDocument, msg.member, memberDocument);
 
           // Save changes to serverDocument
           serverDocument.save(err => {
