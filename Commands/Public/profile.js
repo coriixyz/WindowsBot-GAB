@@ -14,19 +14,19 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 		}).then(() => {
 			let embed_fields = [
 			{
-				name: `Joined server:`,
+				name: `Joined server`,
 				value: `${moment(member.joinedAt).fromNow()}`,
 				inline: false
 			}];
 			if(member.nick) {
 				embed_fields.push({
-					name: `Nickname:`,
+					name: `Nickname`,
 					value: `${member.nick}`,
 					inline: false
 				});
 			}
 			embed_fields.push({
-				name: `Roles:`,
+				name: `Roles`,
 				value:  `${member.roles.map(roleid => {
                     return msg.channel.guild.roles.get(roleid).name;
                 }).join(", ") || "@everyone"}`,
@@ -39,7 +39,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 					targetMemberDocument = serverDocument.members.id(member.id);
 				}
 				embed_fields.push({
-					name: `Message Count:`,
+					name: `Message Count`,
 					value: `${targetMemberDocument.messages} text message${targetMemberDocument.messages == 1 ? "" : "s"} this week`,
 					inline: false
 				});
@@ -52,7 +52,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 					});
 				}
 				embed_fields.push({
-					name: `Strikes: `,
+					name: `Strikes`,
 					value: `${targetMemberDocument.strikes.length} so far`,
 					inline: false
 				});
