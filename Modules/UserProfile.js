@@ -9,12 +9,7 @@ module.exports = (bot, config, usr, userDocument, titleName) => {
 	let embed_fields = [
 	{
 		name: "Name 👤",
-		value: `${usr.username}`,
-		inline: true
-	},
-	{
-		name: "#⃣",
-		value: `${usr.discriminator}`,
+		value: `${usr.username}#${usr.discriminator}`,
 		inline: true
 	},
 	{
