@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// Server's channel data (botOn, trivia, etc.)
+// Server's channel data (botOn, etc.)
 module.exports = new mongoose.Schema({
 	_id: {type: String, required: true},
 	bot_enabled: {type: Boolean, default: true, required: true},
@@ -13,20 +13,6 @@ module.exports = new mongoose.Schema({
 		message_count: {type: Number, default: 0},
 		last_message_content: String
 	})],
-	trivia: {
-		isOngoing: {type: Boolean, default: false},
-		set_id: String,
-		past_questions: [String],
-		score: {type: Number, default: 0, min: 0},
-		responders: [new mongoose.Schema({
-			_id: String,
-			score: {type: Number, default: 0, min: 0}
-		})],
-		current_question: {
-			answer: String,
-			attempts: {type: Number, default: 0}
-		}
-	},
 	poll: {
 		isOngoing: {type: Boolean, default: false},
 		created_timestamp: Date,

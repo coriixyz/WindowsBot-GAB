@@ -37,7 +37,6 @@ const database = require("./../Database/Driver.js");
 const createMessageOfTheDay = require("./../Modules/MessageOfTheDay.js");
 const Giveaways = require("./../Modules/Giveaways.js");
 const Polls = require("./../Modules/Polls.js");
-const Trivia = require("./../Modules/Trivia.js");
 const Updater = require("./../Modules/Updater.js")
 
 const app = express();
@@ -1979,10 +1978,7 @@ module.exports = (bot, db, auth, config, winston) => {
 				configData: {
 					rss_feeds: serverDocument.config.rss_feeds,
 					commands: {
-						rss: serverDocument.config.commands.rss,
-						trivia: {
-							isEnabled: serverDocument.config.commands.trivia.isEnabled
-						}
+						rss: serverDocument.config.commands.rss
 					}
 				},
 				commandDescriptions: {
@@ -2043,10 +2039,7 @@ module.exports = (bot, db, auth, config, winston) => {
 				configData: {
 					streamers_data: serverDocument.config.streamers_data,
 					commands: {
-						streamers: serverDocument.config.commands.streamers,
-						trivia: {
-							isEnabled: serverDocument.config.commands.trivia.isEnabled
-						}
+						streamers: serverDocument.config.commands.streamers
 					}
 				},
 				commandDescriptions: {
@@ -2099,10 +2092,7 @@ module.exports = (bot, db, auth, config, winston) => {
 				configData: {
 					tags: serverDocument.config.tags,
 					commands: {
-						tag: serverDocument.config.commands.tag,
-						trivia: {
-							isEnabled: serverDocument.config.commands.trivia.isEnabled
-						}
+						tag: serverDocument.config.commands.tag
 					}
 				},
 				commandDescriptions: {
@@ -2201,12 +2191,7 @@ module.exports = (bot, db, auth, config, winston) => {
 				channelData: getChannelData(svr),
 				currentPage: req.path,
 				configData: {
-					translated_messages: serverDocument.config.translated_messages,
-					commands: {
-						trivia: {
-							isEnabled: serverDocument.config.commands.trivia.isEnabled
-						}
-					}
+					translated_messages: serverDocument.config.translated_messages
 				}
 			};
 			for(let i=0; i<data.configData.translated_messages.length; i++) {
@@ -2255,60 +2240,6 @@ module.exports = (bot, db, auth, config, winston) => {
 					}
 				}
 				serverDocument.config.translated_messages.spliceNullElements();
-			}
-
-			saveAdminConsoleOptions(consolemember, svr, serverDocument, req, res);
-		});
-	});
-
-	// Admin console trivia sets
-	app.get("/dashboard/commands/trivia-sets", (req, res) => {
-		checkAuth(req, res, (consolemember, svr, serverDocument) => {
-			if(req.query.i) {
-				const triviaSetDocument = serverDocument.config.trivia_sets[req.query.i];
-				if(triviaSetDocument) {
-					res.json(triviaSetDocument.items);
-				} else {
-					res.redirect("/error");
-				}
-			} else {
-				res.render("pages/admin-trivia-sets.ejs", {
-					authUser: req.isAuthenticated() ? getAuthUser(req.user) : null,
-					serverData: {
-						name: svr.name,
-						id: svr.id,
-						icon: svr.iconURL || "/static/img/discord-icon.png"
-					},
-					currentPage: req.path,
-					configData: {
-						trivia_sets: serverDocument.config.trivia_sets,
-						commands: {
-							trivia: {
-								isEnabled: serverDocument.config.commands.trivia.isEnabled
-							}
-						}
-					}
-				});
-			}
-		});
-	});
-	io.of("/dashboard/commands/trivia-sets").on("connection", socket => {
-		socket.on("disconnect", () => {});
-	});
-	app.post("/dashboard/commands/trivia-sets", (req, res) => {
-		checkAuth(req, res, (consolemember, svr, serverDocument) => {
-			if(req.body["new-name"] && req.body["new-items"] && !serverDocument.config.trivia_sets.id(req.body["new-name"])) {
-				serverDocument.config.trivia_sets.push({
-					_id: req.body["new-name"],
-					items: JSON.parse(req.body["new-items"])
-				});
-			} else {
-				for(let i=0; i<serverDocument.config.trivia_sets.length; i++) {
-					if(req.body[`trivia_set-${i}-removed`]!=null) {
-						serverDocument.config.trivia_sets[i] = null;
-					}
-				}
-				serverDocument.config.trivia_sets.spliceNullElements();
 			}
 
 			saveAdminConsoleOptions(consolemember, svr, serverDocument, req, res);
@@ -2485,47 +2416,6 @@ module.exports = (bot, db, auth, config, winston) => {
 			serverDocument.config.ranks_list = serverDocument.config.ranks_list.sort((a, b) => {
 				return a.max_score - b.max_score;
 			});
-
-			saveAdminConsoleOptions(consolemember, svr, serverDocument, req, res);
-		});
-	});
-
-	// Admin console AwesomePoints
-	app.get("/dashboard/stats-points/awesome-points", (req, res) => {
-		checkAuth(req, res, (consolemember, svr, serverDocument) => {
-			res.render("pages/admin-awesome-points.ejs", {
-				authUser: req.isAuthenticated() ? getAuthUser(req.user) : null,
-				serverData: {
-					name: svr.name,
-					id: svr.id,
-					icon: svr.iconURL || "/static/img/discord-icon.png"
-				},
-				channelData: getChannelData(svr),
-				currentPage: req.path,
-				configData: {
-					commands: {
-						points: serverDocument.config.commands.points,
-						lottery: serverDocument.config.commands.lottery
-					}
-				},
-				commandDescriptions: {
-					points: bot.getPublicCommandMetadata("points").description,
-					lottery: bot.getPublicCommandMetadata("lottery").description
-				},
-				commandCategories: {
-					points: bot.getPublicCommandMetadata("points").category,
-					lottery: bot.getPublicCommandMetadata("lottery").category
-				}
-			});
-		});
-	});
-	io.of("/dashboard/stats-points/awesome-points").on("connection", socket => {
-		socket.on("disconnect", () => {});
-	});
-	app.post("/dashboard/stats-points/awesome-points", (req, res) => {
-		checkAuth(req, res, (consolemember, svr, serverDocument) => {
-			parseCommandOptions(svr, serverDocument, "points", req.body);
-			parseCommandOptions(svr, serverDocument, "lottery", req.body);
 
 			saveAdminConsoleOptions(consolemember, svr, serverDocument, req, res);
 		});
@@ -3242,24 +3132,11 @@ module.exports = (bot, db, auth, config, winston) => {
 	// Admin console ongoing activities
 	app.get("/dashboard/other/ongoing-activities", (req, res) => {
 		checkAuth(req, res, (consolemember, svr, serverDocument) => {
-			const ongoingTrivia = [];
 			const ongoingPolls = [];
 			const ongoingGiveaways = [];
 			serverDocument.channels.forEach(channelDocument => {
 				const ch = svr.channels.get(channelDocument._id);
 				if(ch) {
-					if(channelDocument.trivia.isOngoing) {
-						ongoingTrivia.push({
-							channel: {
-								name: ch.name,
-								id: ch.id
-							},
-							set: channelDocument.trivia.set_id,
-							score: channelDocument.trivia.score,
-							max_score: channelDocument.trivia.max_score,
-							responders: channelDocument.trivia.responders.length
-						});
-					}
 					if(channelDocument.poll.isOngoing) {
 						const creator = svr.members.get(channelDocument.poll.creator_id) || {user: "invalid-user"};
 						ongoingPolls.push({
@@ -3300,7 +3177,6 @@ module.exports = (bot, db, auth, config, winston) => {
 					defaultChannel: svr.defaultChannel.name
 				},
 				currentPage: req.path,
-				trivia: ongoingTrivia,
 				polls: ongoingPolls,
 				giveaways: ongoingGiveaways,
 				commandPrefix: bot.getCommandPrefix(svr, serverDocument)
@@ -3322,9 +3198,6 @@ module.exports = (bot, db, auth, config, winston) => {
 					}
 
 					switch(req.body["end-type"]) {
-						case "trivia":
-							Trivia.end(bot, svr, serverDocument, ch, channelDocument);
-							break;
 						case "poll":
 							Polls.end(serverDocument, ch, channelDocument);
 							break;

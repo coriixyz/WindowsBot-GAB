@@ -457,16 +457,6 @@
             },
             "category": "Utility 🔦"
         },
-        "trivia": {
-            "usage": "",
-            "description": "A fun question-and-answer group quiz game",
-            "defaults": {
-                "is_enabled": true,
-                "is_nsfw_filtered": false,
-                "admin_level": 0
-            },
-            "category": "Fun 🎪"
-        },
         "unban": {
             "usage": "<user>[|<reason>]",
             "description": "Unbans the user",

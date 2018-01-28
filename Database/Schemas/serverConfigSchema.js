@@ -246,13 +246,5 @@ module.exports = {
 		source_language: {type: String, required: true, minlength: 2, maxlength: 6},
 		enabled_channel_ids: [String],
 	})],
-	trivia_sets: [new mongoose.Schema({
-		_id: String,
-		items: [new mongoose.Schema({
-			category: {type: String, required: true},
-			question: {type: String, required: true},
-			answer: {type: String, required: true}
-		})],
-	})],
 	voicetext_channels: [String]
 };

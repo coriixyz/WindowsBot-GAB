@@ -355,19 +355,6 @@ module.exports = (db, auth, config) => {
 			}
 		}
 		return "";
-	};
-
-	// Handle a spam or filter violation on a server
-	bot.handleViolation = (winston, svr, serverDocument, ch, member, userDocument, memberDocument, userMessage, adminMessage, strikeMessage, action, roleid) => {
-		// Deduct 50 AwesomePoints if necessary
-		if(serverDocument.config.commands.points.isEnabled) {
-			userDocument.points -= 50;
-			userDocument.save(err => {
-				if(err) {
-					winston.error("Failed to save user data for points", {usrid: member.id}, err);
-				}
-			});
-		}
 
 		// Add a strike for the user
 		memberDocument.strikes.push({
