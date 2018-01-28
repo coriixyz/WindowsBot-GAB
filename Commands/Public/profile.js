@@ -14,23 +14,23 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 		}).then(() => {
 			let embed_fields = [
 			{
-				name: `⌛ Joined server `,
+				name: `Joined server:`,
 				value: `${moment(member.joinedAt).fromNow()}`,
-				inline: true
+				inline: false
 			}];
 			if(member.nick) {
 				embed_fields.push({
-					name: `🏷 Nickname:`,
+					name: `Nickname:`,
 					value: `${member.nick}`,
-					inline: true
+					inline: false
 				});
 			}
 			embed_fields.push({
-				name: `🗣 Roles:`,
+				name: `Roles:`,
 				value:  `${member.roles.map(roleid => {
                     return msg.channel.guild.roles.get(roleid).name;
                 }).join(", ") || "@everyone"}`,
-				inline: true
+				inline: false
 			});
 			if(!member.user.bot) {
 				let targetMemberDocument = serverDocument.members.id(member.id);
@@ -39,22 +39,22 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 					targetMemberDocument = serverDocument.members.id(member.id);
 				}
 				embed_fields.push({
-					name: `💬 Message Amount`,
+					name: `Message Count:`,
 					value: `${targetMemberDocument.messages} text message${targetMemberDocument.messages == 1 ? "" : "s"} this week`,
-					inline: true
+					inline: false
 				});
 				if(targetMemberDocument.voice > 0) {
 					const voiceActivityDuration = moment.duration(targetMemberDocument.voice*6000).humanize();
 					embed_fields.push({
-						name: "🎙 Voice Activity",
+						name: "Voice Activity",
 						value: `${voiceActivityDuration.charAt(0).toUpperCase()}${voiceActivityDuration.slice(1)} active on voice chat this week`,
-						inline: true
+						inline: false
 					});
 				}
 				embed_fields.push({
-					name: `❎ Strikes: `,
+					name: `Strikes: `,
 					value: `${targetMemberDocument.strikes.length} so far`,
-					inline: true
+					inline: false
 				});
 				if(targetMemberDocument.profile_fields) {
 					for(const key in targetMemberDocument.profile_fields) {

@@ -27,11 +27,6 @@ module.exports = (bot, config, usr, userDocument, titleName) => {
 		value: `${moment(usr.createdAt).fromNow()}`,
 		inline: false
 	}];
-	embed_fields.push({
-		name: "Mutual Servers",
-		value: `${mutualServersCount} mutual server${mutualServersCount==1 ? "" : "s"} with ${bot.user.username}`,
-		inline: false
-	});
 	if(!usr.bot && userDocument) {
 		if(firstMember.status!= "online" && userDocument.last_seen) {
 			embed_fields.push({
