@@ -13,8 +13,6 @@ module.exports = (bot, svr, serverDocument) => {
 		}
 	});
 
-	// Default RSS feed
-	serverDocument.config.rss_feeds = default_rss_feeds;
 
 	// Default member messages
 	serverDocument.config.moderation.status_messages.new_member_message.messages = default_status_messages.new_member_message;
