@@ -4,7 +4,6 @@ const getNewServerData = require("./../Modules/NewServer.js");
 const clearStats = require("./../Modules/ClearServerStats.js");
 const setReminder = require("./../Modules/SetReminder.js");
 const setCountdown = require("./../Modules/SetCountdown.js");
-const sendStreamingRSSUpdates = require("./../Modules/StreamingRSS.js");
 const sendStreamerMessage = require("./../Modules/StreamChecker.js");
 const createMessageOfTheDay = require("./../Modules/MessageOfTheDay.js");
 const runTimerExtension = require("./../Modules/TimerExtensionRunner.js");

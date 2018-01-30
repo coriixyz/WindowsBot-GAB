@@ -7,7 +7,6 @@ const Message = require("./Message");
 const auth = require("./../../Configuration/auth.json");
 const getGIF = require("./../GiphySearch.js");
 const giSearch = require("./../GoogleImageSearch.js");
-const getRSS = require("./../RSS.js");
 
 const util = require("util");
 const unirest = require("unirest");
