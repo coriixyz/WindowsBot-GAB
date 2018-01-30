@@ -81,36 +81,6 @@ module.exports = (bot, db, config, winston) => {
 		countServerStats(guildIterator.next().value[1], guildIterator);
 	};
 
-	// Set existing reminders to send message when they expire
-	const setReminders = () => {
-		db.users.find({reminders: {$not: {$size: 0}}}, (err, userDocuments) => {
-			if(err) {
-				winston.error("Failed to get reminders", err);
-			} else {
-				for(let i=0; i<userDocuments.length; i++) {
-					for(let j=0; j<userDocuments[i].reminders.length; j++) {
-						setReminder(bot, winston, userDocuments[i], userDocuments[i].reminders[j]);
-					}
-				}
-			}
-		});
-	};
-
-	// Set existing countdowns in servers to send message when they expire
-	const setCountdowns = () => {
-		db.servers.find({"config.countdown_data": {$not: {$size: 0}}}, (err, serverDocuments) => {
-			if(err) {
-				winston.error("Failed to get countdowns", err);
-			} else {
-				for(let i=0; i<serverDocuments.length; i++) {
-					for(let j=0; j<serverDocuments[i].config.countdown_data.length; j++) {
-						setCountdown(bot, winston, serverDocuments[i], serverDocuments[i].config.countdown_data[j]);
-					}
-				}
-			}
-		});
-	};
-
 	// Set existing giveaways to end when they expire
 	const setGiveaways = () => {
 		db.servers.find({
@@ -139,41 +109,6 @@ module.exports = (bot, db, config, winston) => {
 					}
 				});
 			}
-		});
-	};
-
-	// Start streaming RSS timer
-	const startStreamingRSS = () => {
-		db.servers.find({}, (err, serverDocuments) => {
-			if(!err && serverDocuments) {
-				const sendStreamingRSSToServer = i => {
-					if(i < serverDocuments.length) {
-						const serverDocument = serverDocuments[i];
-						const svr = bot.guilds.get(serverDocument._id);
-						if(svr) {
-							const sendStreamingRSSFeed = j => {
-								if(j < serverDocument.config.rss_feeds.length) {
-									if(serverDocument.config.rss_feeds[j].streaming.isEnabled) {
-										sendStreamingRSSUpdates(bot, winston, svr, serverDocument, serverDocument.config.rss_feeds[j], () => {
-											sendStreamingRSSFeed(++j);
-										});
-									} else {
-                    sendStreamingRSSFeed(++j);
-                  }
-								} else {
-									sendStreamingRSSToServer(++i);
-								}
-							};
-							sendStreamingRSSFeed(0);
-						}
-					} else {
-						setTimeout(() => {
-							startStreamingRSS();
-						}, 600000);
-					}
-				};
-        sendStreamingRSSToServer(0);
-      }
 		});
 	};
 
@@ -246,15 +181,10 @@ module.exports = (bot, db, config, winston) => {
 		});
 	};
 
-	// Print startup ASCII art in console
+	// Print startup info in console
 	const showStartupMessage = () => {
 		bot.isReady = true;
-		winston.info(`Started the best Discord bot, version ${config.version}\n\
-     _										 ____		_   \n\
-	/ \\__	  _____  ___  ___  _ __ ___   ___| __ )  ___ | |_ \n\
-   / _ \\ \\ /\\ / / _ \\/ __|/ _ \\| '_ \` _ \\ / _ \\  _ \\ / _ \\| __|\n\
-  / ___ \\ V  V /  __/\\__ \\ (_) | | | | | |  __/ |_) | (_) | |_ \n\
- /_/   \\_\\_/\\_/ \\___||___/\\___/|_| |_| |_|\\___|____/ \\___/ \\__|\n`);
+		winston.info(`WindowsBot is running, on version ${config.version}`);
 	};
 
 	// Set messages_today to 0 for all servers
@@ -270,10 +200,7 @@ module.exports = (bot, db, config, winston) => {
 				setInterval(clearMessageCount, 86400000);
 			}
 			statsCollector();
-			setReminders();
-			setCountdowns();
 			setGiveaways();
-			startStreamingRSS();
 			checkStreamers();
 			startMessageOfTheDay();
 			runTimerExtensions();
@@ -290,8 +217,8 @@ module.exports = (bot, db, config, winston) => {
 		};
 		if(config.game=="default") {
 			game = {
-				name: "awesomebot.xyz",
-				url: "http://awesomebot.xyz"
+				name: "windowsbot.us",
+				url: "http://windowsbot.us"
 			};
 		}
 		bot.editStatus(config.status, game);
