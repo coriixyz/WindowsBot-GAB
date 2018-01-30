@@ -9,7 +9,6 @@ modulesSchema.index({
 	name: "text",
 	description: "text"
 });
-const blogSchema = require("./Schemas/blogSchema.js");
 const wikiSchema = require("./Schemas/wikiSchema");
 
 // Connect to and setup database
@@ -26,7 +25,6 @@ module.exports = {
 		mongoose.model("servers", serverSchema);
 		mongoose.model("users", userSchema);
 		mongoose.model("gallery", modulesSchema);
-		mongoose.model("blog", blogSchema);
 		mongoose.model("wiki", wikiSchema);
 
 		mongoose.connection.on("error", callback);

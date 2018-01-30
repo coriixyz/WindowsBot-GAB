@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// Schema for blog entries
+// Schema for wiki entries
 module.exports = new mongoose.Schema({
 	_id: {type: String, minlength: 3, maxlength: 100, required: true},
 	content: {type: String, required: true},
