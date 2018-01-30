@@ -1734,67 +1734,6 @@ module.exports = (bot, db, auth, config, winston) => {
 		});
 	});
 
-	// Admin console RSS feeds
-	app.get("/dashboard/commands/rss-feeds", (req, res) => {
-		checkAuth(req, res, (consolemember, svr, serverDocument) => {
-			res.render("pages/admin-rss-feeds.ejs", {
-				authUser: req.isAuthenticated() ? getAuthUser(req.user) : null,
-				serverData: {
-					name: svr.name,
-					id: svr.id,
-					icon: svr.iconURL || "/static/img/discord-icon.png"
-				},
-				channelData: getChannelData(svr),
-				currentPage: req.path,
-				configData: {
-					rss_feeds: serverDocument.config.rss_feeds,
-					commands: {
-						rss: serverDocument.config.commands.rss
-					}
-				},
-				commandDescriptions: {
-					rss: bot.getPublicCommandMetadata("rss").description
-				},
-				commandCategories: {
-					rss: bot.getPublicCommandMetadata("rss").category
-				}
-			});
-		});
-	});
-	io.of("/dashboard/commands/rss-feeds").on("connection", socket => {
-		socket.on("disconnect", () => {});
-	});
-	app.post("/dashboard/commands/rss-feeds", (req, res) => {
-		checkAuth(req, res, (consolemember, svr, serverDocument) => {
-			if(req.body["new-url"] && req.body["new-name"] && !serverDocument.config.rss_feeds.id(req.body["new-name"])) {
-				serverDocument.config.rss_feeds.push({
-					_id: req.body["new-name"],
-					url: req.body["new-url"]
-				});
-			} else {
-				parseCommandOptions(svr, serverDocument, "rss", req.body);
-				for(let i=0; i<serverDocument.config.rss_feeds.length; i++) {
-					if(req.body[`rss-${i}-removed`]!=null) {
-						serverDocument.config.rss_feeds[i] = null;
-					} else {
-						serverDocument.config.rss_feeds[i].streaming.isEnabled = req.body[`rss-${i}-streaming-isEnabled`]=="on";
-						serverDocument.config.rss_feeds[i].streaming.enabled_channel_ids = [];
-						svr.channels.forEach(ch => {
-							if(ch.type==0) {
-								if(req.body[`rss-${i}-streaming-enabled_channel_ids-${ch.id}`]=="on") {
-									serverDocument.config.rss_feeds[i].streaming.enabled_channel_ids.push(ch.id);
-								}
-							}
-						});
-					}
-				}
-				serverDocument.config.rss_feeds.spliceNullElements();
-			}
-
-			saveAdminConsoleOptions(consolemember, svr, serverDocument, req, res);
-		});
-	});
-
 	// Admin console streamers
 	app.get("/dashboard/commands/streamers", (req, res) => {
 		checkAuth(req, res, (consolemember, svr, serverDocument) => {
